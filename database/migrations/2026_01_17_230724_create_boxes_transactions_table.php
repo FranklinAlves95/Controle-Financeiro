@@ -11,22 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('credit_card_transactions', function (Blueprint $table) {
+        Schema::create('boxes_transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('credit_card_id')
-                ->constrained()
-                ->cascadeOnDelete();
-
-            $table->foreignId('credit_card_invoice_id')
-                ->constrained()
-                ->cascadeOnDelete();
-            $table->foreignId('bank_id')
+            $table->foreignId('box_id')
                 ->constrained()
                 ->cascadeOnDelete();
 
             $table->string('description');
             $table->decimal('amount', 10, 2);
-
+            $table->enum('type', ['income', 'expense']);
             $table->unsignedInteger('installments')->default(1);
             $table->unsignedInteger('installment_number')->default(1);
 
@@ -39,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('credit_card_transactions');
+        Schema::dropIfExists('boxes_transactions');
     }
 };

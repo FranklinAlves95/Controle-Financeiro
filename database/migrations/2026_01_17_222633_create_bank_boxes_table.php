@@ -11,17 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('credit_card_invoices', function (Blueprint $table) {
+        Schema::create('boxes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('credit_card_id')
-                ->constrained()
-                ->cascadeOnDelete();
+
             $table->foreignId('bank_id')
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->date('reference_month'); // Mês de referência da fatura
-            $table->decimal('amount', 10, 2)->default(0); // Valor total da fatura
-            $table->enum('status', ['open', 'closed', 'paid'])->default('open');
+
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->decimal('balance', 10, 2)->default(0);
+            $table->boolean('is_active')->default(true);
+
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('credit_card_invoices');
+        Schema::dropIfExists('bank_boxes');
     }
 };

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Banks;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\CreditCardTransaction;
 use App\Models\CreditCard;
@@ -24,10 +25,10 @@ class CreditCardTransactionFactory extends Factory
         return [
             'credit_card_id' => CreditCard::inRandomOrder()->first()->id,
             'credit_card_invoice_id' => CreditCardInvoice::factory(),
-            'description' => $this->faker->sentence(),
+            'description' => $this->faker->randomElement(['Supermercado', 'Farmácia', 'Posto de Gasolina', 'Restaurante', 'Loja de Roupas', 'laser', 'academia', 'assinatura streaming', 'reforma casa', 'eletrônicos']),
             'amount' => $this->faker->randomFloat(2, 10, 1000),
             'installments' => $installments,
-            'transaction_date' => $this->faker->date(),
+            'bank_id' => Banks::factory(),
         ];
     }
 }

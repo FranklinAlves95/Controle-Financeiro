@@ -12,22 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('credit_cards', function (Blueprint $table) {
-    $table->id();
+            $table->id();
 
-    $table->foreignId('user_id')
-          ->constrained()
-          ->cascadeOnDelete();
-
-    $table->string('name');                 // Ex: Nubank, Itaú Visa
-    $table->string('brand');                // Visa, MasterCard
-    $table->decimal('limit', 10, 2);        // Limite total
-    $table->integer('closing_day');          // Dia de fechamento
-    $table->integer('due_day');              // Dia de vencimento
-    $table->boolean('is_active')->default(true);
-
-    $table->timestamps();
-});
-
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->foreignId('bank_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->string('name');                 // Ex: Nubank, Itaú Visa
+            $table->string('brand');                // Visa, MasterCard
+            $table->decimal('limit', 10, 2);        // Limite total
+            $table->integer('closing_day');          // Dia de fechamento
+            $table->integer('due_day');              // Dia de vencimento
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+        });
     }
 
     /**

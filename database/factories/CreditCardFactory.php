@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Banks;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,6 +20,7 @@ class CreditCardFactory extends Factory
 {
     return [
         'user_id'     => User::factory(),
+        'bank_id'     => Banks::factory(),
         'name'        => $this->faker->company(),
         'brand'       => $this->faker->randomElement(['Visa', 'MasterCard', 'Elo']),
         'limit'       => $this->faker->randomFloat(2, 1000, 15000),

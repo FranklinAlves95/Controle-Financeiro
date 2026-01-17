@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Banks;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\CreditCardInvoice;
 use App\Models\CreditCard;
@@ -24,6 +25,7 @@ class CreditCardInvoiceFactory extends Factory
             'reference_month' => $this->faker->date(),
             'amount' => $this->faker->randomFloat(2, 0, 10000),
             'status' => $this->faker->randomElement(['open', 'closed', 'paid']),
+            'bank_id'     => Banks::factory(),
         ];
     }
 }
