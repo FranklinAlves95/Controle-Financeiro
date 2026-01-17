@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             TransactionSeeder::class,
             CreditCardSeeder::class,
+            CreditCardTransactionSeeder::class,
+            CreditCardInvoiceSeeder::class,
         ]);
     }
 }
